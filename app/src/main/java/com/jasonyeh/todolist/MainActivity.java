@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     @NonNull
     private View getListItemView(@NonNull Todo todo) {
-        // use UI thread --> bad
+        // use UI thread --> bad. inflate new view 對象
         View view = getLayoutInflater().inflate(R.layout.main_list_item, null);
         ((TextView) view.findViewById(R.id.main_list_item_text)).setText(todo.text);
         return view;
