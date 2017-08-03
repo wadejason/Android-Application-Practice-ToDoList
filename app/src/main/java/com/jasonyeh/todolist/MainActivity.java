@@ -37,19 +37,30 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.crappy_list);
         linearLayout.removeAllViews();
 
-        for (Todo todo : todos) {
-            View view = getListItemView(todo);
+        TodoListConverter converter = new TodoListConverter(this, todos);
+
+        for (int i = 0; i < todos.size(); ++i) {
+            View view = converter.getView(i);
             linearLayout.addView(view);
         }
     }
 
-    @NonNull
-    private View getListItemView(@NonNull Todo todo) {
-        // use UI thread --> bad. inflate new view 對象
-        View view = getLayoutInflater().inflate(R.layout.main_list_item, null);
-        ((TextView) view.findViewById(R.id.main_list_item_text)).setText(todo.text);
-        return view;
-    }
+//    private void setupUI(@NonNull List<Todo> todos) {
+//        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.crappy_list);
+//        linearLayout.removeAllViews();
+//
+//        for (Todo todo : todos) {
+//            View view = getListItemView(todo);
+//            linearLayout.addView(view);
+//        }
+//    }
+//
+//    @NonNull
+//    private View getListItemView(@NonNull Todo todo) {
+//        View view = getLayoutInflater().inflate(R.layout.main_list_item, null);
+//        ((TextView) view.findViewById(R.id.main_list_item_text)).setText(todo.text);
+//        return view;
+//    }
 
     @NonNull
     private List<Todo> mockData() {
