@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @NonNull
     private List<Todo> mockData() {
         List<Todo> list = new ArrayList<>();
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 1000; ++i) {
             list.add(new Todo("todo " + i, DateUtils.stringToDate("2015 7 29 0:00")));
         }
         return list;
