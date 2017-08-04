@@ -43,15 +43,24 @@ public class TodoListConverter extends BaseAdapter{
     }
 
     // 數據轉介面
-    // parent:幫助孩子決定大小和顯示範圍; attachToRoot: if true 立刻畫到介面上 if false 先不畫，放內存
+    // convertView: 介面回收
     // getView -> UI thread
     @Override
     public View getView(int position,  View convertView, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.main_list_item, parent ,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.main_list_item, parent, false);
+        }
+
         Todo todo = data.get(position);
 
-        ((TextView) view.findViewById(R.id.main_list_item_text)).setText(todo.text);
-        return view;
+        ((TextView) convertView.findViewById(R.id.main_list_item_text)).setText(todo.text);
+        return convertView;
+
+//        View view = LayoutInflater.from(context).inflate(R.layout.main_list_item, parent ,false);
+//        Todo todo = data.get(position);
+//
+//        ((TextView) view.findViewById(R.id.main_list_item_text)).setText(todo.text);
+//        return view;
     }
 
 //    public View getView(int position) {
