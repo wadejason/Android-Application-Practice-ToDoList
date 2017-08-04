@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,17 +35,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupUI(@NonNull List<Todo> todos) {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.crappy_list);
-        linearLayout.removeAllViews();
-
-        TodoListConverter converter = new TodoListConverter(this, todos);
-
-        for (int i = 0; i < todos.size(); ++i) {
-            View view = converter.getView(i);
-            linearLayout.addView(view);
-        }
+        ListView listView = (ListView) findViewById(R.id.main_list_view);
+        listView.setAdapter(new TodoListConverter(this, todos));
     }
 
+// crappy_list_refactored
+//    private void setupUI(@NonNull List<Todo> todos) {
+//        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.crappy_list);
+//        linearLayout.removeAllViews();
+//
+//        TodoListConverter converter = new TodoListConverter(this, todos);
+//
+//        for (int i = 0; i < todos.size(); ++i) {
+//            View view = converter.getView(i);
+//            linearLayout.addView(view);
+//        }
+//    }
+
+    // crappy_list
 //    private void setupUI(@NonNull List<Todo> todos) {
 //        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.crappy_list);
 //        linearLayout.removeAllViews();
@@ -64,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
     @NonNull
     private List<Todo> mockData() {
+        // Lazy Load
         List<Todo> list = new ArrayList<>();
         for (int i = 0; i < 1000; ++i) {
-            list.add(new Todo("todo " + i, DateUtils.stringToDate("2015 7 29 0:00")));
+            list.add(new Todo("todo " + i, DateUtils.stringToDate("2017 8 21 0:00")));
         }
         return list;
     }
