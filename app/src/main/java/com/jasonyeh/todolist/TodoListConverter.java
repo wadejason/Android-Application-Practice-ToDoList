@@ -47,14 +47,28 @@ public class TodoListConverter extends BaseAdapter{
     // getView -> UI thread
     @Override
     public View getView(int position,  View convertView, ViewGroup parent) {
+        ViewHolder vh;
+
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.main_list_item, parent, false);
+
+            vh = new ViewHolder();
+            // we only find once
+            vh.todoText = (TextView) convertView.findViewById(R.id.main_list_item_text);
+            // cache the view holder
+            convertView.setTag(vh);
+        } else {
+            // convertView is not null, which means it contains a cached view holder
+            vh = (ViewHolder) convertView.getTag();
         }
 
         Todo todo = data.get(position);
-
-        ((TextView) convertView.findViewById(R.id.main_list_item_text)).setText(todo.text);
+        vh.todoText.setText(todo.text);
         return convertView;
+
+//        // findViewById is time consuming
+//        ((TextView) convertView.findViewById(R.id.main_list_item_text)).setText(todo.text);
+//        return convertView;
 
 //        View view = LayoutInflater.from(context).inflate(R.layout.main_list_item, parent ,false);
 //        Todo todo = data.get(position);
@@ -70,4 +84,9 @@ public class TodoListConverter extends BaseAdapter{
 //        ((TextView) view.findViewById(R.id.main_list_item_text)).setText(todo.text);
 //        return view;
 //    }
+    private static class ViewHolder {
+        TextView todoText;
+    }
 }
+
+
