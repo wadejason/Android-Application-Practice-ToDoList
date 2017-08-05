@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#1F2A3A</color>
     <color name="colorAccent">#6385B8</color>
 
-    <color name="list_divider_color">#ffeeeeee</color>
+    <!--<color name="list_divider_color">#ffeeeeee</color>-->
 </resources>
